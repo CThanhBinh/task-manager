@@ -1,0 +1,49 @@
+<% layout('boilerplate') -%>
+
+<body class="container-fluid p-0">
+    <div class="text-center container mt-5">
+        <div class="row mt-5">
+            <div class="container text-dark shadow bg-body rounded mt-5 col-5 offset-3">
+                <h3 class="mt-3 ">Task Manager</h3>
+                <div class="row ">
+                    <div class="col-10 offset-1">
+                        <form action="/" method="post" class="my-4 d-inline-flex container px-0">
+                            <input class="form-control rounded-0 rounded-start" type="text" placeholder="e.g wash dishes" name="name">
+                            <button class="btn btn-success btn-sm rounded-0 rounded-end">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="mt-5 col-5 offset-3 bg-white text-dark">
+                <ul class="list-group ">
+                    <%for(let task of tasks) {%>
+                        <div class=" row shadow bg-body rounded mb-3">
+
+                            <div class="col d-flex justify-content-start">
+                                <li class="list-group-item border border-0 d-flex align-items-center">
+                                    <h4 class="fs-5 m-0 "><%= task.name %></h4>
+                                </li>
+                            </div>
+
+                            <div class="col d-flex justify-content-end p-0 me-3 ">
+                                <span class="material-symbols-outlined my-auto">
+                                    <a href="/<%=task._id%>" class="text-decoration-none "> Edit </a>
+                                </span>  
+                                <form action="/<%=task._id%>?_method=delete" method="post">                          
+                                    <button class="btn btn-link mt-2">
+                                        <span class="material-symbols-outlined ms-2">
+                                            Delete 
+                                        </span>
+                                    </button>
+                                </form>
+                            </div>  
+                            
+                        </div>
+                    <% } %> 
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
